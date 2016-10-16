@@ -1,0 +1,72 @@
+//Variables
+$darkgrey: #19171C
+$grey: #706A7C
+$lightgrey: #DAD8DB
+$twitchpurple: #6441A4
+$twitchpurple-hover: #7d5bbe
+
+$margin: 15px
+
+//Styling
+.container-fluid
+  color: $grey
+  font-size: 14px
+  padding: 0px
+  
+//Channel Element
+.channel-element
+  height: 50px
+  margin: $margin
+  .streamer-avatar
+    float: left
+    margin-right: $margin
+    img
+      height: 50px
+      width: 50px
+  .streamer-info
+    line-height: 25px
+    height: 25px
+    width: 100%
+    .streamer-name
+      float: left
+      font-size: 16px
+      color: $darkgrey
+      margin-right: $margin
+    .streamer-game
+      a
+        color: $twitchpurple
+        &:hover
+          color: $darkgrey
+          text-decoration: none
+  .streamer-title
+    line-height: 25px
+    height: 25px
+    font-size: 16px
+    color: $darkgrey
+  
+//Add Stream Form
+.add-stream-form
+  position: fixed
+  bottom: $margin
+  right: $margin
+  left: $margin
+  
+  label
+    font-weight: 200
+  .form-control
+    border:
+      radius: 0px
+      color: $lightgrey
+    &:focus
+      border-color: $twitchpurple
+  .input-group-btn
+    padding-left: 15px
+    .btn-default
+      color: #fff
+      background-color: $twitchpurple
+      border:
+        radius: 0px
+        color: $twitchpurple
+      &:hover
+        color: #fff
+        background-color: $twitchpurple-hover
