@@ -6,6 +6,14 @@ $twitchpurple: #6441A4;
 $twitchpurple-hover: #7d5bbe;
 $margin: 15px;
 //Styling
+html {
+  width: 800px;
+  height: 600px;
+}
+body {
+  width: 800px;
+  height: 600px;
+}
 .container-fluid {
   color: $grey;
   font-size: 14px;

@@ -24,10 +24,11 @@ gulp.task('uglify', function(){
         .pipe(gulp.dest('build/js/'));
 });
 
+
 // Styles task
 // Compiling Sass, adding prefixes.
 gulp.task('styles', function(){
-    sass('assets/css/**/*.sass', {style:'compressed'})
+    sass('assets/**/*.scss', {style:'compressed'})
         .pipe(prefix({
             browsers: ['last 3 versions']
         }))
@@ -52,8 +53,8 @@ gulp.task('styles', function(){
 // Watches the files and compiles
 gulp.task('watch', function(){
     gulp.watch('js/*.js', ['uglify']);
-    gulp.watch('assets/css/**/*.sass', ['styles']);
-    gulp.watch('assets/css/**/*.scss', ['styles']);
+    gulp.watch('assets/**/*.sass', ['styles']);
+    gulp.watch('assets/**/*.scss', ['styles']);
     gulp.watch("./*.html").on('change', browserSync.reload);
     //gulp.watch('assets/img/*', ['image']);
 });
