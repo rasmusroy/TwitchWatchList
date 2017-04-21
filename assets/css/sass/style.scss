@@ -10,16 +10,25 @@ html {
   width: 800px;
   height: 600px;
   font-family: sans-serif;
+  background-color: #f5f8fa;
 }
 body {
   width: 800px;
   height: 600px;
+  margin: 0px;
+}
+button {
+  -webkit-appearance: none;
+  border: 1px;
+  line-height: 20px;
+  width: 80px;
 }
 .container-fluid {
   color: $grey;
   font-size: 14px;
   padding: 0px;
   width: 100%;
+  padding-top: $margin;
 }
 
 .stream-container {
@@ -30,7 +39,8 @@ body {
 //Channel Element
 .channel-element {
   height: 50px;
-  margin: $margin;
+  margin-bottom: $margin;
+  margin-left: $margin;
 }
 .stream-link {
   text-decoration: none;
@@ -48,7 +58,7 @@ body {
 
 .streamer-info {
   line-height: 25px;
-  height: 25px;
+  height: 30px;
   width: 100%;
   .streamer-name {
     float: left;
@@ -68,39 +78,17 @@ body {
 }
 
 .streamer-title {
-  line-height: 25px;
+  line-height: 18px;
   height: 25px;
-  font-size: 16px;
+  font-size: 14px;
   color: $darkgrey;
 }
 
 //Add Stream Form
 .add-stream-form {
+  height: 50px;
+  background-color: #fff;
   position: fixed;
-  bottom: $margin;
-  right: $margin;
-  left: $margin;
-  label {
-    font-weight: 200;
-  }
-  .form-control {
-    border-radius: 0px;
-    border-color: $lightgrey;
-    &:focus {
-      border-color: $twitchpurple;
-    }
-  }
-  .input-group-btn {
-    padding-left: 15px;
-    .btn-default {
-      color: #fff;
-      background-color: $twitchpurple;
-      border-radius: 0px;
-      border-color: $twitchpurple;
-      &:hover {
-        color: #fff;
-        background-color: $twitchpurple-hover;
-      }
-    }
-  }
+  bottom: 0px;
+  width: 100%;
 }

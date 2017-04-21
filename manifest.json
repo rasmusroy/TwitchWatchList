@@ -8,9 +8,9 @@
     "default_popup": "index.html",
     "default_title": "Check what's live!"
   },
-  "icons": { "16": "icon16.png",
-           "48": "icon48.png",
-          "128": "icon128.png" },
+  "icons": { "16": "assets/icon16.png",
+           "48": "assets/icon48.png",
+          "128": "assets/icon128.png" },
   "content_security_policy":
     "script-src 'self' https://wind-bow.glitch.me https://wind-bow.hyperdev.space; object-src 'self'",
   "content_scripts": [ {

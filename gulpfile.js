@@ -28,7 +28,7 @@ gulp.task('uglify', function(){
 // Styles task
 // Compiling Sass, adding prefixes.
 gulp.task('styles', function(){
-    sass('assets/**/*.scss', {style:'compressed'})
+    sass('assets/css/sass/*.scss', {style:'compressed'})
         .pipe(prefix({
             browsers: ['last 3 versions']
         }))
