@@ -1,14 +1,16 @@
 {
   "manifest_version": 2,
 
-  "name": "Live stream list",
+  "name": "ESL Twitch Streams",
   "description": "Showing you a list of your favorite Twitch streamers currently streaming.",
   "version": "1.0",
   "browser_action": {
-    "default_icon": "icon.png",
     "default_popup": "index.html",
-    "default_title": "Check who's live!"
+    "default_title": "Check what's live!"
   },
+  "icons": { "16": "icon16.png",
+           "48": "icon48.png",
+          "128": "icon128.png" },
   "content_security_policy":
     "script-src 'self' https://wind-bow.glitch.me https://wind-bow.hyperdev.space; object-src 'self'",
   "content_scripts": [ {
