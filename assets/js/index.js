@@ -1,7 +1,8 @@
-var channels = ["ESL_CSGO","WoodenPotatoes","ESL_SC2","Alignftw"];
+var channels = ["ESL_CSGO","ESL_SC2","ESL_LOL","ESL_Overwatch","ESL_Heroes","ESL_DOTA2","ESL_Halo"];
 
 $(document).ready(function() {
   channelInfoCall();
+  links();
 });
 
 var channelInput = document.getElementById("channelName");
@@ -9,7 +10,12 @@ var channelInput = document.getElementById("channelName");
 function addChannel() {
   channels.push(channelInput.value);
 }
-
+function links() {
+  $('body').on('click', 'a', function(){
+     chrome.tabs.create({url: $(this).attr('href')});
+     return false;
+   });
+}
 // API CALL FUNCTION
 function channelInfoCall() {
   channels.forEach(function(channel) {
@@ -35,8 +41,8 @@ function channelInfoCall() {
             name = data.display_name != null ? data.display_name : channel,
             description = status === "online" ? '' + data.status : "";
             html = '<div class="channel-element col-xs-12 ' + status +'"> <div class="streamer-avatar"> <img src="' + 
-            logo + '"> </div> <div class="streamer-info"> <div class="streamer-name"> ' + 
-            name + ' </div> <div class="streamer-game"> Streaming  <a href="https://www.twitch.tv/directory/game/'+ game +'">' + 
+            logo + '"> </div> <div class="streamer-info"> <div class="streamer-name"> <a class="stream-link" href="https://www.twitch.tv/'+ name +'">' + 
+            name + '</a> </div> <div class="streamer-game"> Streaming  <a href="https://www.twitch.tv/directory/game/'+ game +'">' + 
             game + '</a> </div> </div> <div class="streamer-title">' + 
             description + '</div> </div>';
         //Sorts Streams by Online or Offline
