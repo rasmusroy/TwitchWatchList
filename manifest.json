@@ -14,7 +14,7 @@
   "content_security_policy":
     "script-src 'self' https://wind-bow.glitch.me https://wind-bow.hyperdev.space; object-src 'self'",
   "content_scripts": [ {
-    "js": [ "jquery.min.js", "assets/js/index.js" ],
+    "js": [ "jquery.min.js", "build/js/index.js" ],
     "matches": [ "http://*/*", "https://*/*"]
   }],
   "permissions": [

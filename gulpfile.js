@@ -18,10 +18,11 @@ gulp.task('browser-sync', function() {
 // Uglify task
 // Minifies JS
 gulp.task('uglify', function(){
-    gulp.src('js/*.js')
+    gulp.src('assets/js/*.js')
         .pipe(plumber())
         .pipe(uglify())
-        .pipe(gulp.dest('build/js/'));
+        .pipe(gulp.dest('build/js/'))
+        .pipe(browserSync.stream());
 });
 
 
@@ -52,7 +53,7 @@ gulp.task('styles', function(){
 // Watch task
 // Watches the files and compiles
 gulp.task('watch', function(){
-    gulp.watch('js/*.js', ['uglify']);
+    gulp.watch('assets/js/*.js', ['uglify']);
     gulp.watch('assets/**/*.sass', ['styles']);
     gulp.watch('assets/**/*.scss', ['styles']);
     gulp.watch("./*.html").on('change', browserSync.reload);

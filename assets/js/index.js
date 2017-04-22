@@ -1,6 +1,11 @@
-var channels = ["ESL_CSGO","ESL_SC2","ESL_LOL","ESL_Overwatch","ESL_Heroes","ESL_DOTA2","ESL_Halo"];
+var channels = ["ESL_CSGO","alignftw","HeroHarmony","ESL_SC2","ESL_LOL","ESL_Overwatch","ESL_Heroes","ESL_DOTA2"];
 
-$(document).ready(function() {
+// $(document).ready(function() {
+//   channelInfoCall();
+//   links();
+// });
+
+document.addEventListener('DOMContentLoaded', function() {
   channelInfoCall();
   links();
 });
@@ -20,7 +25,8 @@ function links() {
 function channelInfoCall() {
   channels.forEach(function(channel) {
     function streamURL(type, name) {
-      return 'https://wind-bow.hyperdev.space/twitch-api/' + type + '/' + name + '?callback=?';
+      // return 'https://wind-bow.hyperdev.space/twitch-api/' + type + '/' + name + '?callback=?';
+      return 'https://api.twitch.tv/kraken/' + type + '/' + name +'?client_id=f1kmn05e2nylo6c3vvcrmt88xxd9g0';
     };
     $.getJSON(streamURL("streams", channel), function(data) {
       var game,
