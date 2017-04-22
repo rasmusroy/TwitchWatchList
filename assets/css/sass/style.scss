@@ -86,9 +86,25 @@ button {
 
 //Add Stream Form
 .add-stream-form {
-  height: 50px;
   background-color: #fff;
   position: fixed;
   bottom: 0px;
   width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+}
+.input-group {
+  display: flex;
+  width: calc(100% - 30px);
+  margin-bottom: 15px;
+}
+.form-control {
+  height: 30px;
+  line-height: 30px;
+  width: 80%;
+}
+.btn {
+  padding: 0px;
+  width: 20%;
 }
