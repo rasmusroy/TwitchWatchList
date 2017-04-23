@@ -1,0 +1,1 @@
+localStorage.storedChannels=["ESL_CSGO","alignftw","HeroHarmony","ESL_SC2","ESL_LOL","ESL_Overwatch","ESL_Heroes","ESL_DOTA2","wheeze202"];var channels=localStorage.storedChannels.split(",");console.log(channels);
