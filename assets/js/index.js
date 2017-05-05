@@ -1,12 +1,10 @@
-var config = require("./config.js");
-var channels = ["ESL_CSGO","alignftw","HeroHarmony","ESL_SC2","ESL_LOL","ESL_Overwatch","ESL_Heroes","ESL_DOTA2"];
+// TODO: Set up transpiling for ES6
+// var config = require("./config.js");
+// console.log(config);
 
-// $(document).ready(function() {
-//   channelInfoCall();
-//   links();
-// });
 
-console.log(config);
+var channels = ["ESL_CSGO","alignftw","HeroHarmony","ESL_SC2","ESL_LOL","ESL_Overwatch","ESL_Heroes","ESL_DOTA2","Wheeze202"];
+
 
 document.addEventListener('DOMContentLoaded', function() {
   channelInfoCall();
@@ -29,7 +27,10 @@ function channelInfoCall() {
   channels.forEach(function(channel) {
     function streamURL(type, name) {
       // return 'https://wind-bow.hyperdev.space/twitch-api/' + type + '/' + name + '?callback=?';
-      return 'https://api.twitch.tv/kraken/' + type + '/' + name +'?client_id=' + config.clientID;
+      return 'https://api.twitch.tv/kraken/' + type + '/' + name +'?client_id=f1kmn05e2nylo6c3vvcrmt88xxd9g0';
+
+      // For Config File
+      // return 'https://api.twitch.tv/kraken/' + type + '/' + name +'?client_id=' + config.clientID;
     };
     $.getJSON(streamURL("streams", channel), function(data) {
       var game,
