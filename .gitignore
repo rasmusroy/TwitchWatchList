@@ -1,2 +1,4 @@
 /node_modules
 /.sass-cache
+assets/js/config.js
+build/js/config.js

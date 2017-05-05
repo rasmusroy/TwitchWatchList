@@ -1,0 +1,1 @@
+var config={clientID:"123MyKey321"};module.exports.config=config;
