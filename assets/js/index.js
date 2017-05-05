@@ -1,3 +1,4 @@
+
 // TODO: Set up transpiling for ES6
 // var config = require("./config.js");
 // console.log(config);
@@ -5,29 +6,23 @@
 
 var channels = ["ESL_CSGO","alignftw","HeroHarmony","ESL_SC2","ESL_LOL","ESL_Overwatch","ESL_Heroes","ESL_DOTA2","Wheeze202"];
 
-
+// Runs All Functions When Extension is Opened
 document.addEventListener('DOMContentLoaded', function() {
   channelInfoCall();
   links();
 });
 
-var channelInput = document.getElementById("channelName");
-
-function addChannel() {
-  channels.push(channelInput.value);
-}
-function links() {
-  $('body').on('click', 'a', function(){
-     chrome.tabs.create({url: $(this).attr('href')});
-     return false;
-   });
-}
 // API CALL FUNCTION
 function channelInfoCall() {
   channels.forEach(function(channel) {
     function streamURL(type, name) {
+      // If you want to use without client_id from twitch, uncomment next line.
       // return 'https://wind-bow.hyperdev.space/twitch-api/' + type + '/' + name + '?callback=?';
+
+      // The following is for using with twitch api.
+      // TODO: Replace XXXX with own client_id
       return 'https://api.twitch.tv/kraken/' + type + '/' + name +'?client_id=f1kmn05e2nylo6c3vvcrmt88xxd9g0';
+
 
       // For Config File
       // return 'https://api.twitch.tv/kraken/' + type + '/' + name +'?client_id=' + config.clientID;
@@ -63,13 +58,18 @@ function channelInfoCall() {
   });
 };
 
+// Function making links work in the extension
+function links() {
+  $('body').on('click', 'a', function(){
+     chrome.tabs.create({url: $(this).attr('href')});
+     return false;
+   });
+}
 
 
 
 
-
-/* API CALL
-$.getJSON("http://wind-bow.hyperdev.space/twitch-api/streams/esl_sc2?callback=?", function(streamData) {
-  console.log(streamData);
-});
-*/
+// API CALL example with 3rd party API.
+// $.getJSON("http://wind-bow.hyperdev.space/twitch-api/streams/esl_sc2?callback=?", function(streamData) {
+//   console.log(streamData);
+// });
