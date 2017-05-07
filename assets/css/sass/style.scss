@@ -6,34 +6,38 @@ $twitchpurple: #6441A4;
 $twitchpurple-hover: #7d5bbe;
 $margin: 15px;
 //Styling
+
 html {
   width: 800px;
   height: 600px;
   font-family: sans-serif;
   background-color: #f5f8fa;
 }
+
 body {
   width: 800px;
   height: 600px;
   margin: 0px;
+  background-color: #f5f8fa;
 }
+
 button {
   -webkit-appearance: none;
   border: 1px;
   line-height: 20px;
   width: 80px;
 }
-.container-fluid {
+
+.stream-container {
+  height: calc(100% - 84px);
   color: $grey;
   font-size: 14px;
   padding: 0px;
   width: 100%;
   padding-top: $margin;
-}
-
-.stream-container {
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 }
 
 //Channel Element

@@ -4,44 +4,41 @@
 <head>
   <meta charset="UTF-8">
   <title>TwitchWatchList</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="build/css/style.css">
 </head>
 
 <body>
-
-  <div class="container-fluid">
-    <div class="stream-container row">
-      <!-- Streamer Element Start
-        <div class="channel-element col-xs-12">
-          <div class="streamer-avatar">
-            <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/xarth/404_user_70x70.png">
+  <div class="stream-container">
+    <!-- Streamer Element Start
+      <div class="channel-element col-xs-12">
+        <div class="streamer-avatar">
+          <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/xarth/404_user_70x70.png">
+        </div>
+        <div class="streamer-info">
+          <div class="streamer-name">
+            Alignftw
           </div>
-          <div class="streamer-info">
-            <div class="streamer-name">
-              Alignftw
-            </div>
-            <div class="streamer-game">
-              Streaming 
-              <a href="https://www.twitch.tv/directory/game/Destiny">Destiny</a>
-            </div>
-          </div>
-          <div class="streamer-title">
-            Playing insane trials and stuff
+          <div class="streamer-game">
+            Streaming 
+            <a href="https://www.twitch.tv/directory/game/Destiny">Destiny</a>
           </div>
         </div>
-      Streamer Element End -->
-    </div>
-
-    <!-- Add Stream Form Start -->
-    <section class="add-stream-form">
-      <label for="channelName">Add channel by name</label>
-      <div class="input-group">
-        <input type="text" class="form-control" id="channelName">
-        <button id="addStreamBtn" class="btn btn-default" type="button" onclick="addChannel()">Add Stream</button>
+        <div class="streamer-title">
+          Playing insane trials and stuff
+        </div>
       </div>
-    </section>
-    <!-- Add Stream Form End -->
+    Streamer Element End -->
   </div>
+
+  <!-- Add Stream Form Start -->
+  <section class="add-stream-form">
+    <label for="channelName">Add channel by name</label>
+    <div class="input-group">
+      <input type="text" class="form-control" id="channelName">
+      <button id="addStreamBtn" class="btn btn-default" type="button" onclick="addChannel()">Add Stream</button>
+    </div>
+  </section>
+  <!-- Add Stream Form End -->
 
   <script src='jquery.min.js'></script>
   <script src="build/js/background.js"></script>

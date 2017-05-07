@@ -34,7 +34,7 @@ gulp.task('styles', function(){
             browsers: ['last 3 versions']
         }))
         .pipe(plumber())
-        .pipe(gulp.dest('assets/css/'))
+        .pipe(gulp.dest('build/css/'))
         .pipe(browserSync.stream());
 });
 

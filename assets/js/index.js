@@ -1,12 +1,4 @@
-
-// TODO: Set up transpiling for ES6
-// var config = require("./config.js");
-// console.log(config);
-
-
-var channels = ["ESL_CSGO","alignftw","HeroHarmony","ESL_SC2","ESL_LOL","ESL_Overwatch","ESL_Heroes","ESL_DOTA2","Wheeze202"];
-
-// Runs All Functions When Extension is Opened
+// Runs functions when Extension is opened
 document.addEventListener('DOMContentLoaded', function() {
   channelInfoCall();
   links();
@@ -14,15 +6,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // API CALL FUNCTION
 function channelInfoCall() {
-  channels.forEach(function(channel) {
+  channels.forEach(channel => {
     function streamURL(type, name) {
-      // If you want to use without client_id from twitch, uncomment next line.
-      // return 'https://wind-bow.hyperdev.space/twitch-api/' + type + '/' + name + '?callback=?';
 
-      // The following is for using with twitch api.
       // TODO: Replace XXXX with own client_id
       return 'https://api.twitch.tv/kraken/' + type + '/' + name +'?client_id=f1kmn05e2nylo6c3vvcrmt88xxd9g0';
-
 
       // For Config File
       // return 'https://api.twitch.tv/kraken/' + type + '/' + name +'?client_id=' + config.clientID;
@@ -30,7 +18,7 @@ function channelInfoCall() {
     $.getJSON(streamURL("streams", channel), function(data) {
       var game,
           status;
-      
+
       if (data.stream === null) {
         game = "Offline";
         status = "offline";
@@ -41,6 +29,7 @@ function channelInfoCall() {
         game = data.stream.game;
         status = "online";
       };
+
       $.getJSON(streamURL("channels", channel), function(data) {
         var logo = data.logo != null ? data.logo : "https://static-cdn.jtvnw.net/jtv_user_pictures/xarth/404_user_70x70.png",
             name = data.display_name != null ? data.display_name : channel,
@@ -65,11 +54,3 @@ function links() {
      return false;
    });
 }
-
-
-
-
-// API CALL example with 3rd party API.
-// $.getJSON("http://wind-bow.hyperdev.space/twitch-api/streams/esl_sc2?callback=?", function(streamData) {
-//   console.log(streamData);
-// });
