@@ -20,6 +20,7 @@ function fetchTest() {
   });
 }
 
+
 // API CALL FUNCTION
 function channelInfoCall() {
   channels.forEach(function(channel) {

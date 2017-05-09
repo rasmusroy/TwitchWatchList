@@ -1,7 +1,6 @@
 var gulp = require('gulp'),
     uglify = require('gulp-uglify'), // Minify JS
     sass = require('gulp-ruby-sass'), // Sass Compile Package
-    imagemin = require('gulp-imagemin'), // Image Minify Package
     prefix = require('gulp-autoprefixer'), // Autoprofixer Package
     plumber = require('gulp-plumber'), // Error Handling Package
     browserSync = require('browser-sync').create();
@@ -37,18 +36,6 @@ gulp.task('styles', function(){
         .pipe(gulp.dest('build/css/'))
         .pipe(browserSync.stream());
 });
-
-
-
-// Image task
-// Compress images
-// gulp.task('image', functsion(){
-//     gulp.src('assets/img/*.png')
-//         .pipe(imagemin())
-//         .pipe(gulp.dest('build/images'));
-// });
-
-
 
 // Watch task
 // Watches the files and compiles
