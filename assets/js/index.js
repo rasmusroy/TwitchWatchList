@@ -1,25 +1,8 @@
 // Runs functions when Extension is opened
 document.addEventListener('DOMContentLoaded', function() {
-  fetchTest();
   channelInfoCall();
   links();
 });
-
-// TODO how the fuck do i fetch lololol
-function fetchTest() {
-
-  // channels.forEach(function(channel) {
-  //   function streamURL(type, name) {
-  //     return 'https://api.twitch.tv/kraken/' + type + '/' + name + '?client_id=f1kmn05e2nylo6c3vvcrmt88xxd9g0';
-  //   }
-  // })
-
-  fetch('https://api.twitch.tv/kraken/streams/alignftw/?client_id=f1kmn05e2nylo6c3vvcrmt88xxd9g0')
-    .then(data => data.json())
-    .then(data => {
-      console.log(data);
-    })
-}
 
 
 // API CALL FUNCTION

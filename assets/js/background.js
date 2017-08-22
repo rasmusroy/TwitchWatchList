@@ -6,7 +6,8 @@ var channelList = ["ESL_CSGO",
 "ESL_Heroes",
 "ESL_DOTA2",
 "wheeze202",
-"KingGothalion"];
+"KingGothalion",
+"HeroHarmony"];
 
 // Array of channels stored in localstorage.
 localStorage.storedChannels = channelList;
