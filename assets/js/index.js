@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   channelInfoCall();
   links();
+  fetchTest();
 });
 
 
