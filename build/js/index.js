@@ -2,7 +2,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   channelInfoCall();
   links();
-  fetchTest();
 });
 
 
@@ -43,7 +42,7 @@ function channelInfoCall() {
 
             html = `
             <div class="channel-element col-xs-12 ${status}">
-              <div class="streamer-avatar"> <img src="${logo}"></div>
+              <div class="streamer-avatar"> <a href="${url}"><img src="${logo}"></a></div>
               <div class="streamer-info">
                 <div class="streamer-name"> <a class="stream-link" href="${url}"${name}">${name}</a> </div>
                 <div class="streamer-game"> Streaming  <a href="https://www.twitch.tv/directory/game/${game}">${game}</a> </div>
