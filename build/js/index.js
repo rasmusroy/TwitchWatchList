@@ -4,12 +4,12 @@ document.addEventListener('DOMContentLoaded', function () {
   links();
 });
 
-var channels = [];
-chrome.storage.local.get({
-  storedChannels: []
-}, function (data) {
-  channels = data.storedChannels;
-});
+// var channels = [];
+// chrome.storage.local.get({
+//   storedChannels: []
+// }, function (data) {
+//   channels = data.storedChannels;
+// });
 
 // var channels = ["ESL_CSGO",
 // "alignftw",
@@ -26,53 +26,59 @@ chrome.storage.local.get({
 // API CALL FUNCTION
 function channelInfoCall() {
 
-  channels.forEach(function (channel) {
-    // Function takes in type and name and returns it with the api url.
-    function streamURL(type, name) {
-      // TODO: Replace XXXX with own client_id
-      return 'https://api.twitch.tv/kraken/' + type + '/' + name + '?client_id=f1kmn05e2nylo6c3vvcrmt88xxd9g0';
-      // For Config File
-      // return 'https://api.twitch.tv/kraken/' + type + '/' + name +'?client_id=' + config.clientID;
-    };
+  chrome.storage.local.get({
+    storedChannels: []
+  }, function (data) {
+    console.log(data.storedChannels);
 
-    // Initiates the function and runs once for each object in channel.
-    // First tests if the stream is offline or online.
-    $.getJSON(streamURL("streams", channel), function (data) {
-      var game,
-        status;
-
-      if (data.stream === null) {
-        game = "Offline";
-        status = "offline";
-      } else if (data.stream === undefined) {
-        game = "Can't find account";
-        status = "offline";
-      } else {
-        game = data.stream.game;
-        status = "online";
+    data.storedChannels.forEach(function (channel) {
+      // Function takes in type and name and returns it with the api url.
+      function streamURL(type, name) {
+        // TODO: Replace XXXX with own client_id
+        return 'https://api.twitch.tv/kraken/' + type + '/' + name + '?client_id=f1kmn05e2nylo6c3vvcrmt88xxd9g0';
+        // For Config File
+        // return 'https://api.twitch.tv/kraken/' + type + '/' + name +'?client_id=' + config.clientID;
       };
 
-      // Gets the channel Data and adds the html.
-      $.getJSON(streamURL("channels", channel), function (data) {
-        var logo = data.logo != null ? data.logo : "https://static-cdn.jtvnw.net/jtv_user_pictures/xarth/404_user_70x70.png",
-          name = data.display_name != null ? data.display_name : channel,
-          url = data.url,
-          description = status === "online" ? '' + data.status : "";
+      // Initiates the function and runs once for each object in channel.
+      // First tests if the stream is offline or online.
+      $.getJSON(streamURL("streams", channel), function (data) {
+        var game,
+          status;
 
-        html = `
-            <div class="channel-element col-xs-12 ${status}">
-              <div class="streamer-avatar"> <a href="${url}"><img src="${logo}"></a></div>
-              <div class="streamer-info">
-                <div class="streamer-name"> <a class="stream-link" href="${url}"${name}">${name}</a> </div>
-                <div class="streamer-game"> Streaming  <a href="https://www.twitch.tv/directory/game/${game}">${game}</a> </div>
-              </div>
-              <div class="streamer-title">${description}</div>
-            </div>`;
+        if (data.stream === null) {
+          game = "Offline";
+          status = "offline";
+        } else if (data.stream === undefined) {
+          game = "Can't find account";
+          status = "offline";
+        } else {
+          game = data.stream.game;
+          status = "online";
+        };
 
-        // Sorts Streams by Online or Offline and adds it to the html.
-        status === "online" ? $(".stream-container").prepend(html) : $(".stream-container").append(html)
+        // Gets the channel Data and adds the html.
+        $.getJSON(streamURL("channels", channel), function (data) {
+          var logo = data.logo != null ? data.logo : "https://static-cdn.jtvnw.net/jtv_user_pictures/xarth/404_user_70x70.png",
+            name = data.display_name != null ? data.display_name : channel,
+            url = data.url,
+            description = status === "online" ? '' + data.status : "";
+
+          html = `
+              <div class="channel-element col-xs-12 ${status}">
+                <div class="streamer-avatar"> <a href="${url}"><img src="${logo}"></a></div>
+                <div class="streamer-info">
+                  <div class="streamer-name"> <a class="stream-link" href="${url}"${name}">${name}</a> </div>
+                  <div class="streamer-game"> Streaming  <a href="https://www.twitch.tv/directory/game/${game}">${game}</a> </div>
+                </div>
+                <div class="streamer-title">${description}</div>
+              </div>`;
+
+          // Sorts Streams by Online or Offline and adds it to the html.
+          status === "online" ? $(".stream-container").prepend(html) : $(".stream-container").append(html)
+        });
+
       });
-
     });
   });
 };
