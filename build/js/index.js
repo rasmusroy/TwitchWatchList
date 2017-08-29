@@ -4,28 +4,10 @@ document.addEventListener('DOMContentLoaded', function () {
   links();
 });
 
-// var channels = [];
-// chrome.storage.local.get({
-//   storedChannels: []
-// }, function (data) {
-//   channels = data.storedChannels;
-// });
-
-// var channels = ["ESL_CSGO",
-// "alignftw",
-// "ESL_SC2",
-// "ESL_LOL",
-// "ESL_Overwatch",
-// "ESL_Heroes",
-// "ESL_DOTA2",
-// "wheeze202",
-// "KingGothalion",
-// "HeroHarmony"];
-
-
 // API CALL FUNCTION
 function channelInfoCall() {
 
+  // Gets Array from Chrome Local Storage
   chrome.storage.local.get({
     storedChannels: []
   }, function (data) {
@@ -34,12 +16,8 @@ function channelInfoCall() {
     data.storedChannels.forEach(function (channel) {
       // Function takes in type and name and returns it with the api url.
       function streamURL(type, name) {
-        // TODO: Replace XXXX with own client_id
         return 'https://api.twitch.tv/kraken/' + type + '/' + name + '?client_id=f1kmn05e2nylo6c3vvcrmt88xxd9g0';
-        // For Config File
-        // return 'https://api.twitch.tv/kraken/' + type + '/' + name +'?client_id=' + config.clientID;
       };
-
       // Initiates the function and runs once for each object in channel.
       // First tests if the stream is offline or online.
       $.getJSON(streamURL("streams", channel), function (data) {
