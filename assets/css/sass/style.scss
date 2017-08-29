@@ -5,8 +5,8 @@ $lightgrey: #DAD8DB;
 $twitchpurple: #6441A4;
 $twitchpurple-hover: #7d5bbe;
 $margin: 15px;
-//Styling
 
+//Styling
 html {
   width: 800px;
   height: 600px;
@@ -46,9 +46,11 @@ button {
   margin-bottom: $margin;
   margin-left: $margin;
 }
+
 .stream-link {
   text-decoration: none;
 }
+
 .streamer-avatar {
   float: left;
   height: 50px;
@@ -98,21 +100,23 @@ button {
   padding-right: 15px;
   padding-top: 15px;
 }
+
 .input-group {
   display: flex;
   width: calc(100% - 30px);
   margin-bottom: 15px;
 }
+
 .form-control {
   height: 30px;
   line-height: 30px;
   width: 80%;
   font-size: 14px;
-
   &:focus {
     outline: $twitchpurple-hover auto 2px;
   }
 }
+
 .btn {
   padding: 0px;
   width: 20%;
