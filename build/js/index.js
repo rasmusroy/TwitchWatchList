@@ -1,17 +1,44 @@
 // Runs functions when Extension is opened
 document.addEventListener('DOMContentLoaded', function () {
   channelInfoCall();
-  links();
+  links()
+
+  // ADD TO ARRAY FUNCTION
+  var addButton = document.getElementById('addChannelBtn');
+
+  addButton.addEventListener('click', function () {
+    var inputField = document.getElementById('channelNameInput');
+    var inputFieldValue = inputField.value;
+
+    if (!inputFieldValue) {
+      console.log('Error: No value specified');
+      return;
+    }
+    chrome.storage.sync.get({
+      storedChannels: []
+    }, function (data) {
+      storedArray = data.storedChannels;
+      storedArray.push(inputFieldValue);
+      chrome.storage.sync.set({
+        'storedChannels': storedArray
+      }, function () {
+        // Notify that we saved.
+        console.log('Settings saved');
+        location.reload();
+      });
+    });
+  });
 });
+
 
 // API CALL FUNCTION
 function channelInfoCall() {
 
   // Gets Array from Chrome Local Storage
-  chrome.storage.local.get({
+  chrome.storage.sync.get({
     storedChannels: []
   }, function (data) {
-    console.log(data.storedChannels);
+    // console.log(data.storedChannels);
 
     data.storedChannels.forEach(function (channel) {
       // Function takes in type and name and returns it with the api url.
@@ -43,7 +70,7 @@ function channelInfoCall() {
             description = status === "online" ? '' + data.status : "";
 
           html = `
-              <div class="channel-element col-xs-12 ${status}">
+              <div class="channel-element ${status}">
                 <div class="streamer-avatar"> <a href="${url}"><img src="${logo}"></a></div>
                 <div class="streamer-info">
                   <div class="streamer-name"> <a class="stream-link" href="${url}"${name}">${name}</a> </div>
@@ -70,3 +97,17 @@ function links() {
     return false;
   });
 };
+
+
+// [
+// 	"ESL_CSGO",
+// 	"alignftw",
+// 	"ESL_SC2",
+// 	"ESL_LOL",
+// 	"ESL_Overwatch",
+// 	"ESL_Heroes",
+// 	"ESL_DOTA2",
+// 	"wheeze202",
+// 	"KingGothalion",
+// 	"HeroHarmony"
+// ]
