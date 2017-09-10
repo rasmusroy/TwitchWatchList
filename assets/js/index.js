@@ -82,7 +82,6 @@ function channelInfoCall() {
           // Sorts Streams by Online or Offline and adds it to the html.
           status === "online" ? $(".stream-container").prepend(html) : $(".stream-container").append(html)
         });
-
       });
     });
   });
@@ -97,17 +96,3 @@ function links() {
     return false;
   });
 };
-
-
-// [
-// 	"ESL_CSGO",
-// 	"alignftw",
-// 	"ESL_SC2",
-// 	"ESL_LOL",
-// 	"ESL_Overwatch",
-// 	"ESL_Heroes",
-// 	"ESL_DOTA2",
-// 	"wheeze202",
-// 	"KingGothalion",
-// 	"HeroHarmony"
-// ]
