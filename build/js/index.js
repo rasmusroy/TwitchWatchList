@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     chrome.storage.sync.get({
       storedChannels: []
-    }, fsunction (data) {
+    }, function (data) {
       storedArray = data.storedChannels;
       storedArray.push(inputFieldValue);
       chrome.storage.sync.set({
