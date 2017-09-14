@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   channelInfoCall();
   links()
-
+  checkForEmptyState()
   // ADD TO ARRAY FUNCTION
   var addButton = document.getElementById('addChannelBtn');
 
@@ -39,7 +39,6 @@ function channelInfoCall() {
     storedChannels: []
   }, function (data) {
     // console.log(data.storedChannels);
-
     data.storedChannels.forEach(function (channel) {
       // Function takes in type and name and returns it with the api url.
       function streamURL(type, name) {
@@ -96,3 +95,17 @@ function links() {
     return false;
   });
 };
+
+
+function checkForEmptyState() {
+  chrome.storage.sync.get({
+    storedChannels: []
+  }, function (data) {
+    if (data.storedChannels.length > 0) {
+      emptyStateFunc()
+    }
+  });
+}
+function emptyStateFunc() {
+  document.getElementById("empty-state").remove();
+}
