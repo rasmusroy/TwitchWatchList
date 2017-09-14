@@ -46,6 +46,9 @@ button {
   margin-bottom: $margin;
   margin-left: $margin;
 }
+.channel-element:hover .deleteBtn {
+  opacity: 1;
+}
 
 .stream-link {
   text-decoration: none;
@@ -88,6 +91,13 @@ button {
   height: 25px;
   font-size: 14px;
   color: $darkgrey;
+}
+.deleteBtn {
+  float: right;
+  margin-right: $margin;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s ease;
 }
 
 //Add Stream Form
