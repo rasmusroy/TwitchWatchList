@@ -21,11 +21,22 @@ body {
   background-color: #f5f8fa;
 }
 
-button {
+input[type="submit"] {
   -webkit-appearance: none;
-  border: 1px;
+  border: 1px solid $twitchpurple;
   line-height: 20px;
-  width: 80px;
+}
+
+a {
+  text-decoration: none;
+  color: $darkgrey;
+}
+a:visited {
+  color: $darkgrey;
+}
+a:hover {
+  color: $twitchpurple;
+  text-decoration: none;
 }
 
 .stream-container {
@@ -34,7 +45,6 @@ button {
   font-size: 14px;
   padding: 0px;
   width: 100%;
-  padding-top: $margin;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
@@ -44,8 +54,12 @@ button {
 //Channel Element
 .channel-element {
   height: 50px;
-  margin-bottom: $margin;
-  margin-left: $margin;
+  padding: $margin;
+  background-color: #fff;
+  border-bottom: 1px solid #e8e8e8;
+}
+.channel-element:hover {
+  background-color: #f9f9f9;
 }
 .channel-element:hover .deleteBtn {
   opacity: 1;
@@ -76,15 +90,6 @@ button {
     color: $darkgrey;
     margin-right: $margin;
   }
-  .streamer-game {
-    a {
-      color: $twitchpurple;
-    }
-    &:hover {
-      color: $darkgrey;
-      text-decoration: none;
-    }
-  }
 }
 
 .streamer-title {
@@ -92,10 +97,13 @@ button {
   height: 25px;
   font-size: 14px;
   color: $darkgrey;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 690px;
+  overflow: hidden;
 }
 .deleteBtn {
   float: right;
-  margin-right: $margin;
   cursor: pointer;
   opacity: 0;
   transition: all 0.2s ease;
@@ -110,6 +118,7 @@ button {
   padding-left: 15px;
   padding-right: 15px;
   padding-top: 15px;
+  border-top: 1px solid #e8e8e8;
 }
 
 .input-group {

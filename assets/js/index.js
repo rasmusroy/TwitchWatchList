@@ -115,7 +115,9 @@ function channelInfoCall() {
                     </g>
                 </svg>
                 </div>
+                <a href="${url}">
                 <div class="streamer-title">${description}</div>
+                </a>
               </div>`;
 
           // Sorts Streams by Online or Offline and adds it to the html.
