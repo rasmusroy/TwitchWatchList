@@ -60,7 +60,7 @@ a:hover {
   display: grid;
   grid-template-columns: 50px 1fr 50px;
   grid-template-rows: 1fr 1fr;
-  grid-gap: 15px;
+  grid-column-gap: 15px;
 }
 .channel-element:hover {
   background-color: #f9f9f9;
@@ -88,6 +88,7 @@ a:hover {
   display: flex;
   grid-column: 2 / 3;
   grid-row: 1;
+  align-self: center;
   .streamer-name {
     font-size: 16px;
     color: $darkgrey;
@@ -103,6 +104,7 @@ a:hover {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  align-self: center;
 }
 .deleteContainer {
   display: flex;
