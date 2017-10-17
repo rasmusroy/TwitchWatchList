@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   addButton.addEventListener('click', function () {
     var inputField = document.getElementById('channelNameInput');
-    var inputFieldValue = inputField.value;
+    var inputFieldValue = inputField.value.toLowerCase();
 
     if (!inputFieldValue) {
       console.log('Error: No value specified');
@@ -38,7 +38,7 @@ document.addEventListener('DOMSubtreeModified', function () {
 
   // DELETE CHANNEL FUNCTION
   $('.deleteBtn').on('click', function () {
-    var itemToDelete = this.id;
+    var itemToDelete = this.id.toLowerCase();
     // console.log(itemToDelete);
 
     chrome.storage.sync.get({
