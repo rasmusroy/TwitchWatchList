@@ -101,6 +101,7 @@ function channelInfoCall() {
 
           html = `
               <div class="channel-element ${status}">
+              <div class="element-container">
                 <div class="streamer-avatar"> <a href="${url}"><img src="${logo}"></a></div>
                 <div class="streamer-info">
                   <div class="streamer-name"> <a class="stream-link" href="${url}"${name}">${name}</a> </div>
@@ -118,6 +119,7 @@ function channelInfoCall() {
                     </g>
                 </g>
             </svg>
+            </div>
             </div>
               </div>`;
 
