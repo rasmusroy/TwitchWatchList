@@ -97,7 +97,8 @@ function channelInfoCall() {
           var logo = data.logo != null ? data.logo : "https://static-cdn.jtvnw.net/jtv_user_pictures/xarth/404_user_70x70.png",
             name = data.display_name != null ? data.display_name : channel,
             url = data.url,
-            description = status === "online" ? '' + data.status : "";
+            description = status === "online" ? '' + data.status : "",
+            streamName = data.name;
 
           html = `
               <div class="channel-element ${status}">
@@ -110,7 +111,7 @@ function channelInfoCall() {
                 <a class="streamer-title" href="${url}">${description}
                 </a>
                 <div class="deleteContainer">
-                <svg class="deleteBtn" id="${name}" alt="Delete Channel" width="14px" height="18px" viewBox="0 0 14 18" >
+                <svg class="deleteBtn" id="${streamName}" alt="Delete Channel" width="14px" height="18px" viewBox="0 0 14 18" >
                 <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                     <g id="Core" transform="translate(-299.000000, -129.000000)" fill="#706A7C">
                         <g id="delete" transform="translate(299.000000, 129.000000)">
