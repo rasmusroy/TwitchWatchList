@@ -75,43 +75,56 @@ function channelInfoCall() {
         return 'https://api.twitch.tv/kraken/' + type + '/' + name + '?client_id=f1kmn05e2nylo6c3vvcrmt88xxd9g0';
       };
 
+
+      let game = "Can't find account";
+      let status = "offline";
+      let logo = "https://static-cdn.jtvnw.net/jtv_user_pictures/xarth/404_user_70x70.png";
+      let name = channel;
+
+
       // Initiates the function and runs once for each object in channel.
       // First tests if the stream is offline or online.
-      $.getJSON(streamURL("streams", channel), function (data) {
-        var game,
-          status;
-
+      fetch(streamURL("streams", channel))
+      .then((response) => {
+          return response.json();
+      })
+      .then((data) => {
         if (data.stream === null) {
           game = "Offline";
-          status = "offline";
-        } else if (data.stream === undefined) {
-          game = "Can't find account";
-          status = "offline";
-        } else {
+        } else if (data.stream.hasOwnProperty('_id')) {
           game = data.stream.game;
           status = "online";
         };
+      })
+      .then(() => {
+        return fetch(streamURL("channels", channel))
+      })
+      .then((response) => {
+        return response.json();
+      })
+      .then ((data) => {
+        if (data.logo != null) {
+          logo = data.logo;
+        }
+        if (data.display_name != null) {
+          name = data.display_name;
+        }
+        const url = data.url;
+        const description = status === "online" ? '' + data.status : "";
+        const streamName = data.name;
 
-        // Gets the channel Data and adds the html.
-        $.getJSON(streamURL("channels", channel), function (data) {
-          var logo = data.logo != null ? data.logo : "https://static-cdn.jtvnw.net/jtv_user_pictures/xarth/404_user_70x70.png",
-            name = data.display_name != null ? data.display_name : channel,
-            url = data.url,
-            description = status === "online" ? '' + data.status : "",
-            streamName = data.name;
-
-          html = `
-              <div class="channel-element ${status}">
-              <div class="element-container">
-                <div class="streamer-avatar"> <a href="${url}"><img src="${logo}"></a></div>
-                <div class="streamer-info">
-                  <div class="streamer-name"> <a class="stream-link" href="${url}"${name}">${name}</a> </div>
-                  <div class="streamer-game"> Streaming  <a href="https://www.twitch.tv/directory/game/${game}">${game}</a> </div>
-                </div>
-                <a class="streamer-title" href="${url}">${description}
-                </a>
-                <div class="deleteContainer">
-                <svg class="deleteBtn" id="${streamName}" alt="Delete Channel" width="14px" height="18px" viewBox="0 0 14 18" >
+        const channelElement = document.createElement("div");
+        channelElement.className = `channel-element ${status}`
+        channelElement.innerHTML = `
+          <div class="element-container">
+            <div class="streamer-avatar"> <a href="${url}"><img src="${logo}"></a></div>
+            <div class="streamer-info">
+              <div class="streamer-name"> <a class="stream-link" href="${url}"${name}">${name}</a> </div>
+              <div class="streamer-game"> Streaming  <a href="https://www.twitch.tv/directory/game/${game}">${game}</a> </div>
+            </div>
+            <a class="streamer-title" href="${url}">${description}</a>
+            <div class="deleteContainer">
+              <svg class="deleteBtn" id="${streamName}" alt="Delete Channel" width="14px" height="18px" viewBox="0 0 14 18" >
                 <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                     <g id="Core" transform="translate(-299.000000, -129.000000)" fill="#706A7C">
                         <g id="delete" transform="translate(299.000000, 129.000000)">
@@ -119,15 +132,20 @@ function channelInfoCall() {
                         </g>
                     </g>
                 </g>
-            </svg>
+              </svg>
             </div>
-            </div>
-              </div>`;
+          </div>`;
 
           // Sorts Streams by Online or Offline and adds it to the html.
-          status === "online" ? $(".stream-container").prepend(html) : $(".stream-container").append(html)
-        });
+          const streamContainer = document.querySelector(".stream-container");
+
+          if (status === "online") {
+            streamContainer.insertBefore(channelElement, streamContainer.firstChild);
+          } else {
+            streamContainer.appendChild(channelElement);
+          }
       });
+      
     });
   });
 };
