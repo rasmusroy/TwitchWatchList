@@ -36,10 +36,10 @@ document.addEventListener('DOMContentLoaded', function () {
 // RUNS WHEN THE DOM IS MODIFIED
 document.addEventListener('DOMSubtreeModified', function () {
 
-  // DELETE CHANNEL FUNCTION
-  $('.deleteBtn').on('click', function () {
+  let button = null;
+  const deleteButtons = document.querySelectorAll('.deleteBtn');
+  const removeChannel = function () {
     var itemToDelete = this.id.toLowerCase();
-    // console.log(itemToDelete);
 
     chrome.storage.sync.get({
       storedChannels: []
@@ -57,7 +57,12 @@ document.addEventListener('DOMSubtreeModified', function () {
         location.reload();
       });
     });
-  });
+  }
+
+  for (let i = 0; i < deleteButtons.length; i++) {
+    button = deleteButtons[i];
+    button.addEventListener('click', removeChannel);
+  }
 });
 
 
@@ -153,12 +158,18 @@ function channelInfoCall() {
 
 // Function making links work in the extension
 function links() {
-  $('body').on('click', 'a', function () {
-    chrome.tabs.create({
-      url: $(this).attr('href')
+  const anchors = document.querySelectorAll("a");
+  let link = null;
+
+  for (let i = 0; i < anchors.length; i++) {
+    anchor = anchors[i];
+    anchor.addEventListener('click', function (event)  {
+      chrome.tabs.create({
+        url: event.target.href
+      });
+      return false;
     });
-    return false;
-  });
+  }
 };
 
 
