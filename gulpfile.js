@@ -1,6 +1,6 @@
 var gulp = require('gulp'),
     uglify = require('gulp-uglify'), // Minify JS
-    sass = require('gulp-ruby-sass'), // Sass Compile Package
+    sass = require('gulp-sass'), // Sass Compile Package
     prefix = require('gulp-autoprefixer'), // Autoprofixer Package
     plumber = require('gulp-plumber'), // Error Handling Package
     babel = require('gulp-babel'),
