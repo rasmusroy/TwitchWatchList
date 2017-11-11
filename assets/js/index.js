@@ -1,7 +1,6 @@
 // Runs functions when Extension is opened
 document.addEventListener('DOMContentLoaded', function () {
   channelInfoCall();
-  links();
   checkForEmptyState();
 
   // ADD TO ARRAY FUNCTION
@@ -30,7 +29,18 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  const anchors = document.querySelectorAll("a");
+  let link = null;
 
+  for (let i = 0; i < anchors.length; i++) {
+    anchor = anchors[i];
+    anchor.addEventListener('click', function (event)  {
+      chrome.tabs.create({
+        url: event.target.href
+      });
+      return false;
+    });
+  }
 });
 
 // RUNS WHEN THE DOM IS MODIFIED
@@ -62,6 +72,19 @@ document.addEventListener('DOMSubtreeModified', function () {
   for (let i = 0; i < deleteButtons.length; i++) {
     button = deleteButtons[i];
     button.addEventListener('click', removeChannel);
+  }
+
+
+  // Function making links work in the extension
+  var links = document.getElementsByTagName("a");
+  for (var i = 0; i < links.length; i++) {
+      (function () {
+          var ln = links[i];
+          var location = ln.href;
+          ln.onclick = function () {
+              chrome.tabs.create({active: true, url: location});
+          };
+      })();
   }
 });
 
@@ -156,22 +179,6 @@ function channelInfoCall() {
 };
 
 
-// Function making links work in the extension
-function links() {
-  const anchors = document.querySelectorAll("a");
-  let link = null;
-
-  for (let i = 0; i < anchors.length; i++) {
-    anchor = anchors[i];
-    anchor.addEventListener('click', function (event)  {
-      chrome.tabs.create({
-        url: event.target.href
-      });
-      return false;
-    });
-  }
-};
-
 
 // EMPTY STATE FUNCTIONS
 function checkForEmptyState() {
@@ -183,6 +190,7 @@ function checkForEmptyState() {
     }
   });
 }
+
 
 function emptyStateFunc() {
   document.getElementById("empty-state").remove();

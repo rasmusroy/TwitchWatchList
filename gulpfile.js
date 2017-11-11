@@ -37,12 +37,9 @@ gulp.task('uglify', function(){
 
 // Styles task
 // Compiling Sass, adding prefixes.
-gulp.task('styles', function(){
-    sass('assets/css/sass/*.scss', {style:'compressed'})
-        .pipe(prefix({
-            browsers: ['last 3 versions']
-        }))
-        .pipe(plumber())
+gulp.task('styles', function(){ 
+    return gulp.src('assets/css/sass/*.scss')
+        .pipe(sass()) // Converts Sass to CSS with gulp-sass
         .pipe(gulp.dest('build/css/'))
         .pipe(browserSync.stream());
 });

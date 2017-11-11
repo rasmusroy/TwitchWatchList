@@ -3,7 +3,7 @@
 
   "name": "Twitch Watch",
   "description": "Showing you a list of your favorite Twitch streamers currently streaming.",
-  "version": "1.0",
+  "version": "1.2",
   "browser_action": {
     "default_popup": "index.html",
     "default_title": "Click to see who's live!"
