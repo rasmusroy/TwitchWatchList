@@ -1,59 +1,14 @@
-var gulp = require('gulp'),
-    uglify = require('gulp-uglify'), // Minify JS
-    sass = require('gulp-sass'), // Sass Compile Package
-    prefix = require('gulp-autoprefixer'), // Autoprofixer Package
-    plumber = require('gulp-plumber'), // Error Handling Package
-    babel = require('gulp-babel'),
-    browserSync = require('browser-sync').create();
-    
+const gulp = require("gulp");
+const babel = require("gulp-babel");
 
-
-// Static server
-gulp.task('browser-sync', function() {
-    browserSync.init({
-        server: {
-            baseDir: "./"
-        }
-    });
+gulp.task("default", () => {
+  return gulp
+    .src("assets/js/index.js")
+    .pipe(
+      babel({
+        presets: ["es2015"]
+      })
+    )
+    .pipe(gulp.dest("build/js/"));
 });
 
-// ES6 Compiling 
-gulp.task('babel', function () {
-    gulp.src('assets/js/*.js')
-        .pipe(gulp.dest('build/js/'))
-        .pipe(browserSync.stream());
-});
-
-// Uglify task
-// Minifies JS
-gulp.task('uglify', function(){
-    gulp.src('assets/js/*.js')
-        .pipe(plumber())
-        .pipe(uglify())
-        .pipe(gulp.dest('build/js/'))
-        .pipe(browserSync.stream());
-});
-
-
-// Styles task
-// Compiling Sass, adding prefixes.
-gulp.task('styles', function(){ 
-    return gulp.src('assets/css/sass/*.scss')
-        .pipe(sass()) // Converts Sass to CSS with gulp-sass
-        .pipe(gulp.dest('build/css/'))
-        .pipe(browserSync.stream());
-});
-
-// Watch task
-// Watches the files and compiles
-gulp.task('watch', function(){
-    gulp.watch('assets/js/*.js', ['babel']);
-    gulp.watch('assets/**/*.sass', ['styles']);
-    gulp.watch('assets/**/*.scss', ['styles']);
-    gulp.watch("./*.html").on('change', browserSync.reload);
-    //gulp.watch('assets/img/*', ['image']);
-});
-
-// Defualt task
-// running with 'gulp' command
-gulp.task('default', ['babel', 'styles', 'watch', 'browser-sync']);
