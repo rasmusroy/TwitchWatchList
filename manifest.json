@@ -9,17 +9,21 @@
     "default_title": "Click to see who's live!"
   },
   "background": {
-    "scripts": ["build/js/background.js"]
+    "scripts": ["build/js/background.js"],
+    "persistent": false
   },
-  "icons": { "16": "build/icon16.png",
-           "48": "build/icon48.png",
-          "128": "build/icon128.png" },
-  "content_security_policy":
-    "script-src 'self' https://api.twitch.tv/kraken/; object-src 'self'",
-  "content_scripts": [ {
-    "js": [ "build/js/index.js" ],
-    "matches": [ "http://*/*", "https://*/*"]
-  }],
+  "icons": {
+    "16": "build/icon16.png",
+    "48": "build/icon48.png",
+    "128": "build/icon128.png"
+  },
+  "content_security_policy": "script-src 'self' https://api.twitch.tv/kraken/; object-src 'self'",
+  "content_scripts": [
+    {
+      "js": ["build/js/index.js"],
+      "matches": ["http://*/*", "https://*/*"]
+    }
+  ],
   "permissions": [
     "activeTab",
     "storage",

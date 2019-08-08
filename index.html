@@ -4,19 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <title>TwitchWatch</title>
-  <link rel="stylesheet" href="build/css/style.css">
+  <link rel="stylesheet" href="build/css/scss/style.css">
 </head>
 
 <body id="body">
   <div class="stream-container" id="stream-container">
-    <div class="stream-container--empty" id="empty-state">
+    <channel-element></channel-element>
+    <!-- <div class="stream-container--empty" id="empty-state">
       <p>You currently have no channels added.</p>
       <p>Add channels below and they will show up here.</p>
       <div class="credits">
         <p>Created with ❤️ by <a class="state-link" href="https://twitter.com/rasmusroy">Rasmus Roy</a><br> Follow the project
           on <a class="state-link" href="https://github.com/rasmusroy/TwitchWatchList">Github 😻</a></p>
       </div>
-    </div>
+    </div> -->
     <!-- STREAMER ELEMENTS HERE  -->
   </div>
 
@@ -31,8 +32,8 @@
       <!-- <button id="addChannelBtn" class="btn" type="button">Add Channel</button> -->
   </section>
   <!-- Add Stream Form End -->
-
-  <script src="build/js/index.js"></script>
+  <script type="module" src="build/js/index.js"></script>
+  <link rel="import" href="assets/components/ChannelElement/ChannelElement.html">
 
 </body>
 
